@@ -2,7 +2,8 @@ import Grid from "@material-ui/core/Grid";
 import { Image, StyleSheet } from "react-native";
 import Button from "./Button";
 import Product from "./Product";
-import Counter from "./Counter";
+
+import Bless from "./Bless"
 import { useLocation } from "react-router-dom";
 
 const styles = StyleSheet.create({
@@ -19,65 +20,57 @@ const styles = StyleSheet.create({
     width: 66,
     height: 58,
   },
+  biglogo:{
+    width: 213,
+    height: 113,
+    marginLeft: 55,
+  }
 });
 const GridProduct = ({
-  product,
+  giftcard,
   onToggle,
-  showDesc,
   onDelete,
-  addQuantity,
-  lowerQuantity,
-  updateProds,
-  products,
+  giftcards,
+  text="",
+  linkGiftcard,
 }) => {
   let props = {
     width: "inherit",
     height: "inherit",
     zoomWidth: 500,
-    img: product.url,
+    img: giftcard._image,
   };
 
   const location = useLocation();
   return (
-    <div>
+    <div className="border">
       <Grid item>
         {location.pathname === "/home" && (
           <Button
             text="Add to Cart"
-            onClick={() => onToggle(product._id)}
+            onClick={() => onToggle(giftcard._id)}
             color="steelblue"
           />
         )}
-        <div
-          onMouseOver={() => showDesc(product._id)}
-          onMouseOut={() => showDesc(product._id)}
-        >
+        <div className="">
           <Product
-            product={product}
+            giftcard={giftcard}
             onDelete={onDelete}
             onToggle={onToggle}
-            showDesc={showDesc}
             className="home-product"
-            updateProds={updateProds}
-            products={products}
+            products={giftcard}
           />
+          <Bless giftcard={giftcard}/>
           <p className="space center"></p>
           <Image
-            style={styles.container}
-            className="cart-images"
+            style={styles.biglogo}
+            className="cart-images "
             source={{
-              uri: product.url,
+              uri: giftcard.image,
             }}
           />
-          {location.pathname === "/home" && (
-            <Counter
-              className="counter"
-              addQuantity={addQuantity}
-              product={product}
-              lowerQuantity={lowerQuantity}
-              updateProds={updateProds}
-            />
-          )}
+          <Button text="Choose Me" color="#B084BA
+" onClick={linkGiftcard} classN="btn left-border" giftcard={giftcard}/>
         </div>
       </Grid>
     </div>

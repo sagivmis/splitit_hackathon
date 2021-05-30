@@ -1,4 +1,4 @@
-const Button = ({ text, onClick, classN = "btn", color = "black" }) => {
+const Button = ({ text, onClick, classN = "btn", color = "black", giftcard = '' }) => {
   return (
     <button
       onClick={onClick}

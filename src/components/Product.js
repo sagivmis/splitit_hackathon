@@ -1,68 +1,56 @@
 import Price from "./Price";
-import Description from "./Description";
 import { useLocation } from "react-router-dom";
-import DeleteProduct from "./DeleteProduct";
-import ItemDetails from "./ItemDetails";
 
 const Product = ({
-  product,
-  onDelete,
+  giftcard,
   onToggle,
-  showDesc,
-  editProduct,
-  updateProds,
-  ProdsContext,
-  products,
+  giftcards,
 }) => {
   const location = useLocation();
   return (
-    <div
-      className={`product ${
-        location.pathname === "/cart" ? "product-cart " : ""
-      } ${location.pathname === "/" ? "product-admin " : ""} ${
-        product.reminder ? "reminder" : ""
-      }`}
-      onDoubleClick={() => onToggle(product._id)}
-      onMouseOver={() => showDesc(product._id)}
-      onMouseOut={() => showDesc(product._id)}
+    <div className={`product`}
+      // className={`product ${
+      //   location.pathname === "/cart" ? "product-cart " : ""
+      // } ${location.pathname === "/" ? "product-admin " : ""} ${
+      //   product.reminder ? "reminder" : ""
+      // }`}
+      // onDoubleClick={() => onToggle(product._id)}
     >
-      <h3>
-        {product.text}
-        {location.pathname === "/home" && <Price price={product.price} />}
-        {location.pathname === "/cart" && (
-          <Price price={product.price} text={"Price:"} />
-        )}
-
-        {location.pathname === "/cart" && (
-          <Price
-            price={product.price * (product.quantity - 1)}
-            text={"Total:"}
-          />
-        )}
-        {/* {location.pathname === "/" && (
-          <UpdateProducts ProdsContext={ProdsContext} />
-        )} */}
+      <div className="up">
+      <h5 className="">
+        Starting date:<br/>
+        {giftcard.date}<br/>
+        <br/>
+        Expiration date:<br/>
+        {giftcard.enddate}
+        <p>
+        <br/>
+        <br/>
         {location.pathname === "/" && (
-          <DeleteProduct id={product._id} updateProds={updateProds} />
-        )}
-      </h3>
-      {location.pathname !== "/" && (
+          <Price price={giftcard.amount} text={"Price:"} />
+        )}</p>
+        {/* {location.pathname === "/" && (
+          <DeleteProduct id={giftcard._id}/>
+        )} */}
+      </h5>
+      </div>
+      {/* {location.pathname !== "/" && (
         <div className="quantity-div">
           <p className="quantity-centered">{`Quantity: ${
             product.quantity - 1
           }`}</p>
         </div>
-      )}
-      {location.pathname !== "/" && location.pathname !== "/cart" && (
-        <Description product={product} showDesc={showDesc} />
+      )} */}
+      {/* {location.pathname !== "/" && location.pathname !== "/cart" && (
+        <Description product={product}/>
       )}
       {location.pathname === "/home" && (
         <ItemDetails product={product} classN={"i-home"} products={products} />
-      )}
+      )} */}
       {/* <br /> */}
-      {location.pathname === "/" && (
+      {/* {location.pathname === "/" && (
         <ItemDetails product={product} classN={"i"} products={products} />
-      )}
+      )} */}
     </div>
   );
 };

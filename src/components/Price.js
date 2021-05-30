@@ -1,7 +1,7 @@
 import NumberFormat from "react-number-format";
 const Price = ({ price, classN = "price", text = "" }) => {
   return (
-    <div className={"centered"}>
+    <div className={""}>
       <p className={classN}>
         &nbsp;<b className="bold">{text}</b>
         <br />
